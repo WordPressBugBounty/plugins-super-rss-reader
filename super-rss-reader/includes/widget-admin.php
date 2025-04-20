@@ -70,6 +70,7 @@ class super_rss_reader_widget extends WP_Widget{
         $instance[ 'thumbnail_position' ] = sanitize_text_field( $new_instance['thumbnail_position'] );
         $instance[ 'thumbnail_size' ] = sanitize_text_field( $new_instance['thumbnail_size'] );
         $instance[ 'thumbnail_default' ] = sanitize_text_field( $new_instance['thumbnail_default'] );
+        $instance[ 'thumbnail_type' ] = sanitize_text_field( $new_instance['thumbnail_type'] );
         $instance[ 'no_feed_text' ] = wp_kses_post( $new_instance['no_feed_text'] );
 
         $instance[ 'color_style' ] = sanitize_text_field( $new_instance['color_style']);
@@ -111,6 +112,7 @@ class super_rss_reader_widget extends WP_Widget{
         $thumbnail_position = $instance['thumbnail_position'];
         $thumbnail_size = $instance['thumbnail_size'];
         $thumbnail_default = $instance['thumbnail_default'];
+        $thumbnail_type = $instance['thumbnail_type'];
         $no_feed_text = $instance['no_feed_text'];
         
         $color_style = $instance['color_style'];
@@ -296,6 +298,19 @@ class super_rss_reader_widget extends WP_Widget{
                         <option disabled>Always</option>
                     </select>
                     <a class="srr_pro_tag" href="https://www.aakashweb.com/wordpress-plugins/super-rss-reader/?utm_source=admin&utm_medium=thumbnail&utm_campaign=srr-pro#pro" target="_blank" title="Upgrade to PRO version">PRO</a>
+                </div>
+            </div>
+
+            <div class="srr_row">
+                <div class="srr_label"><label for="<?php echo esc_attr( $this->get_field_id('thumbnail_type') ); ?>"><?php esc_html_e( 'The size of image to pick', 'super-rss-reader' ); ?></label><?php $this->tt( __( 'If the feed contains both thumbnail and full-size images, choose which image size to use.', 'super-rss-reader' ) ); ?></div>
+                <div class="srr_field">
+                <?php
+                    echo '<select name="' . esc_attr( $this->get_field_name('thumbnail_type') ) . '" id="' . esc_attr( $this->get_field_id('thumbnail_type') ) . '">';
+                    foreach( $option_lists[ 'thumbnail_type' ] as $k => $v ){
+                        echo '<option value="' . esc_attr( $k ) . '" ' . selected( $thumbnail_type, $k, false ) . '>' . esc_html( $v ) . '</option>';
+                    }
+                    echo '</select>';
+                ?>
                 </div>
             </div>
 

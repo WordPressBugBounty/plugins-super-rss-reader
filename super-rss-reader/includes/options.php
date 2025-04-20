@@ -154,6 +154,14 @@ class SRR_Options{
                 'default' => '',
                 'description' => __( 'The URL of the default thumbnail image if not present. Leave empty to not display any thumbnail.', 'super-rss-reader' )
             ),
+            'thumbnail_type' => array(
+                'default' => 'thumbnail',
+                'description' => __( 'The size of image to pick.', 'super-rss-reader' ),
+                'options' => array(
+                    'thumbnail' => __( 'Thumbnail', 'super-rss-reader' ),
+                    'full_size' => __( 'Full size', 'super-rss-reader' )
+                )
+            ),
             'no_feed_text' => array(
                 'default' => __( 'No items', 'super-rss-reader' ),
                 'description' => __( 'Text to display when there are no feed items', 'super-rss-reader' )

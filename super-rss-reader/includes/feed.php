@@ -42,6 +42,7 @@ class SRR_Feed{
         $thumbnail_position = $this->options['thumbnail_position'];
         $thumbnail_size = $this->options['thumbnail_size'];
         $thumbnail_default = $this->options['thumbnail_default'];
+        $thumbnail_type = $this->options['thumbnail_type'];
         $no_feed_text = $this->options['no_feed_text'];
 
         $color_theme = $this->options['color_style'];
@@ -203,8 +204,8 @@ class SRR_Feed{
                     // Thumbnail
                     $thumb = '';
                     if ( $show_thumb == 1 ){
-                        $thumb_url = $this->get_thumbnail_url( $item, $thumbnail_default );
-                        $thumb_url = apply_filters( 'srr_mod_thumbnail_url', $thumb_url, $item, $feed, $thumbnail_default );
+                        $thumb_url = $this->get_thumbnail_url( $item, $thumbnail_default, $thumbnail_type );
+                        $thumb_url = apply_filters( 'srr_mod_thumbnail_url', $thumb_url, $item, $feed, $thumbnail_default, $thumbnail_type );
                         if( !empty( $thumb_url ) ){
                             if( strpos( $thumbnail_size, ',' ) ){
                                 $thumb_size_split = explode( ',', $thumbnail_size );
@@ -373,20 +374,22 @@ class SRR_Feed{
 
     }
 
-    function get_thumbnail_url( $item, $thumbnail_default ){
+    function get_thumbnail_url( $item, $thumbnail_default, $thumbnail_type ){
 
         // Try to get from the item enclosure
         $enclosure = $item->get_enclosure();
+        $enclosure_image = '';
 
-        if ( $enclosure->get_thumbnail() ) {
-            return $enclosure->get_thumbnail();
+        if ( $enclosure->get_thumbnail() && $enclosure->get_link() ){
+            $enclosure_image = ( $thumbnail_type == 'thumbnail' ) ? $enclosure->get_thumbnail() : $enclosure->get_link();
+        } elseif ( $enclosure->get_thumbnail() ) {
+            $enclosure_image = $enclosure->get_thumbnail();
+        } elseif ( $enclosure->get_link() ) {
+            $enclosure_image = $enclosure->get_link();
         }
 
-        if ( $enclosure->get_link() ) {
-            $enclosure_link = $enclosure->get_link();
-            if( SRR_Utilities::is_valid_image_url( $item, $enclosure_link) ){
-                return $enclosure_link;
-            }
+        if( $enclosure_image && SRR_Utilities::is_valid_image_url( $item, $enclosure_image ) ){
+            return trim( $enclosure_image );
         }
 
         // Try to get from item content
