@@ -376,20 +376,26 @@ class SRR_Feed{
 
     function get_thumbnail_url( $item, $thumbnail_default, $thumbnail_type ){
 
+        if ( !is_object( $item ) ) {
+            return trim( $thumbnail_default );
+        }
+
         // Try to get from the item enclosure
         $enclosure = $item->get_enclosure();
         $enclosure_image = '';
 
-        if ( $enclosure->get_thumbnail() && $enclosure->get_link() ){
-            $enclosure_image = ( $thumbnail_type == 'thumbnail' ) ? $enclosure->get_thumbnail() : $enclosure->get_link();
-        } elseif ( $enclosure->get_thumbnail() ) {
-            $enclosure_image = $enclosure->get_thumbnail();
-        } elseif ( $enclosure->get_link() ) {
-            $enclosure_image = $enclosure->get_link();
-        }
+        if ( is_object( $enclosure ) ) {
+            if ( $enclosure->get_thumbnail() && $enclosure->get_link() ){
+                $enclosure_image = ( $thumbnail_type == 'thumbnail' ) ? $enclosure->get_thumbnail() : $enclosure->get_link();
+            } elseif ( $enclosure->get_thumbnail() ) {
+                $enclosure_image = $enclosure->get_thumbnail();
+            } elseif ( $enclosure->get_link() ) {
+                $enclosure_image = $enclosure->get_link();
+            }
 
-        if( $enclosure_image && SRR_Utilities::is_valid_image_url( $item, $enclosure_image ) ){
-            return trim( $enclosure_image );
+            if( $enclosure_image && SRR_Utilities::is_valid_image_url( $item, $enclosure_image ) ){
+                return trim( $enclosure_image );
+            }
         }
 
         // Try to get from item content
@@ -397,18 +403,17 @@ class SRR_Feed{
         $image = SRR_Utilities::parse_image_url( $item, $content );
 
         if( !empty( $image ) ){
-            return $image;
+            return trim( $image );
         }
 
         // Try to get the image tag finally if available
         $image = $item->get_item_tags( '', 'image' );
 
         if( isset( $image[0]['data'] ) ){
-            return $image[0]['data'];
+            return trim( $image[0]['data'] );
         }
 
         return trim( $thumbnail_default );
-
     }
 
 }
