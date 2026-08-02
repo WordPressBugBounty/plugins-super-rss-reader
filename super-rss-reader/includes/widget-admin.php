@@ -68,6 +68,7 @@ class super_rss_reader_widget extends WP_Widget{
         $instance[ 'link_desc' ] = intval( isset( $new_instance['link_desc'] ) ? $new_instance['link_desc'] : 0 );
         $instance[ 'desc_type' ] = sanitize_text_field( $new_instance['desc_type'] );
         $instance[ 'thumbnail_position' ] = sanitize_text_field( $new_instance['thumbnail_position'] );
+        $instance[ 'thumbnail_crop_position' ] = sanitize_text_field( $new_instance['thumbnail_crop_position'] );
         $instance[ 'thumbnail_size' ] = sanitize_text_field( $new_instance['thumbnail_size'] );
         $instance[ 'thumbnail_default' ] = sanitize_text_field( $new_instance['thumbnail_default'] );
         $instance[ 'thumbnail_type' ] = sanitize_text_field( $new_instance['thumbnail_type'] );
@@ -110,6 +111,7 @@ class super_rss_reader_widget extends WP_Widget{
         $desc_type = $instance['desc_type'];
         $link_desc = $instance['link_desc'];
         $thumbnail_position = $instance['thumbnail_position'];
+        $thumbnail_crop_position = $instance['thumbnail_crop_position'];
         $thumbnail_size = $instance['thumbnail_size'];
         $thumbnail_default = $instance['thumbnail_default'];
         $thumbnail_type = $instance['thumbnail_type'];
@@ -278,6 +280,19 @@ class super_rss_reader_widget extends WP_Widget{
                     echo '<select name="' . esc_attr( $this->get_field_name('thumbnail_position') ) . '" id="' . esc_attr( $this->get_field_id('thumbnail_position') ) . '">';
                     foreach( $option_lists[ 'thumbnail_position' ] as $k => $v ){
                         echo '<option value="' . esc_attr( $k ) . '" ' . selected( $thumbnail_position, $k, false ) . '>' . esc_html( $v ) . '</option>';
+                    }
+                    echo '</select>';
+                ?>
+                </div>
+            </div>
+
+            <div class="srr_row">
+                <div class="srr_label"><label for="<?php echo esc_attr( $this->get_field_id('thumbnail_crop_position') ); ?>"><?php esc_html_e( 'Thumbnail crop position', 'super-rss-reader' ); ?></label></div>
+                <div class="srr_field">
+                <?php
+                    echo '<select name="' . esc_attr( $this->get_field_name('thumbnail_crop_position') ) . '" id="' . esc_attr( $this->get_field_id('thumbnail_crop_position') ) . '">';
+                    foreach( $option_lists[ 'thumbnail_crop_position' ] as $k => $v ){
+                        echo '<option value="' . esc_attr( $k ) . '" ' . selected( $thumbnail_crop_position, $k, false ) . '>' . esc_html( $v ) . '</option>';
                     }
                     echo '</select>';
                 ?>

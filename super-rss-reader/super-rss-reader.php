@@ -5,12 +5,12 @@
  * Description: Display any RSS feed(s) in widget with news ticker effect in multiple tabs, thumbnails, customizable color themes and more.
  * Author: Aakash Chakravarthy
  * Author URI: https://www.aakashweb.com/
- * Version: 5.4
+ * Version: 5.5
  * Text Domain: super-rss-reader
  * Domain Path: /languages
  */
 
-define( 'SRR_VERSION', '5.4' );
+define( 'SRR_VERSION', '5.5' );
 define( 'SRR_PATH', plugin_dir_path( __FILE__ ) ); // All have trailing slash
 define( 'SRR_URL', plugin_dir_url( __FILE__ ) );
 define( 'SRR_BASE_NAME', plugin_basename( __FILE__ ) );

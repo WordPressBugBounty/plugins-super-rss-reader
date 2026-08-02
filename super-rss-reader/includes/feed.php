@@ -40,6 +40,7 @@ class SRR_Feed{
         $link_desc = intval( $this->options['link_desc'] );
         $desc_type = $this->options['desc_type'];
         $thumbnail_position = $this->options['thumbnail_position'];
+        $thumbnail_crop_position = $this->options['thumbnail_crop_position'];
         $thumbnail_size = $this->options['thumbnail_size'];
         $thumbnail_default = $this->options['thumbnail_default'];
         $thumbnail_type = $this->options['thumbnail_type'];
@@ -214,9 +215,22 @@ class SRR_Feed{
                             }else{
                                 $thumb_width = $thumb_height = $thumbnail_size;
                             }
+                            $crop_positions = array(
+                                'center' => 'center center',
+                                'top' => 'center top',
+                                'bottom' => 'center bottom',
+                                'left' => 'left center',
+                                'right' => 'right center',
+                                'top_left' => 'left top',
+                                'top_right' => 'right top',
+                                'bottom_left' => 'left bottom',
+                                'bottom_right' => 'right bottom',
+                            );
+                            $thumb_crop_position = array_key_exists( $thumbnail_crop_position, $crop_positions ) ? $thumbnail_crop_position : 'center';
                             $thumb_styles = array(
                                 'width' => $thumb_width,
-                                'height' => $thumb_height
+                                'height' => $thumb_height,
+                                '--srr-thumb-position' => $crop_positions[ $thumb_crop_position ]
                             );
                             $thumb_style = '';
                             foreach( $thumb_styles as $prop => $val ){

@@ -146,6 +146,21 @@ class SRR_Options{
                     'cover' => __( 'Cover', 'super-rss-reader' )
                 )
             ),
+            'thumbnail_crop_position' => array(
+                'default' => 'center',
+                'description' => __( 'The crop position of the thumbnail image.', 'super-rss-reader' ),
+                'options' => array(
+                    'center' => __( 'Center', 'super-rss-reader' ),
+                    'top' => __( 'Top', 'super-rss-reader' ),
+                    'bottom' => __( 'Bottom', 'super-rss-reader' ),
+                    'left' => __( 'Left', 'super-rss-reader' ),
+                    'right' => __( 'Right', 'super-rss-reader' ),
+                    'top_left' => __( 'Top left', 'super-rss-reader' ),
+                    'top_right' => __( 'Top right', 'super-rss-reader' ),
+                    'bottom_left' => __( 'Bottom left', 'super-rss-reader' ),
+                    'bottom_right' => __( 'Bottom right', 'super-rss-reader' )
+                )
+            ),
             'thumbnail_size' => array(
                 'default' => '64px',
                 'description' => __( 'The size of the thumbnail including the units. Example: 64px, 10%', 'super-rss-reader' )

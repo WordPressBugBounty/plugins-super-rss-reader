@@ -7,8 +7,8 @@ License: GPLv2 or later
 Donate Link: https://www.paypal.me/vaakash
 Requires at least: 5.3
 Requires PHP: 5.3
-Tested up to: 6.9
-Stable tag: 5.4
+Tested up to: 7.0.2
+Stable tag: 5.5
 
 Display any RSS feed(s) in widget with news ticker effect in multiple tabs, thumbnails, customizable color themes and more.
 
@@ -131,6 +131,10 @@ The additional effect needs only 2.5 KB of additional JavaScript file which is v
 [Live working demo](https://www.aakashweb.com/demos/super-rss-reader/)
 
 ## Changelog
+
+### 5.5
+* New: Option to set thumbnail crop position for feed thumbnail images.
+* Fix: Support for WordPress 7.0.
 
 ### 5.4
 * Fix: Handle crash with WordPress 6.9 and latest SimplePie version.

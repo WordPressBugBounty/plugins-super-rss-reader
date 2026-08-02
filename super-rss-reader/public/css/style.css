@@ -75,6 +75,7 @@
     max-height: none;
     transform: translate(-50%,-50%);
     object-fit: cover;
+    object-position: var(--srr-thumb-position, center center);
 }
 .srr-thumb.srr-thumb-align_left{
     float: left;
