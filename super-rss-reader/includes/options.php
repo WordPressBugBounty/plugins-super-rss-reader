@@ -169,6 +169,10 @@ class SRR_Options{
                 'default' => '',
                 'description' => __( 'The URL of the default thumbnail image if not present. Leave empty to not display any thumbnail.', 'super-rss-reader' )
             ),
+            'thumbnail_proxy' => array(
+                'default' => 0,
+                'description' => __( 'Serve thumbnail images through proxy server.', 'super-rss-reader' )
+            ),
             'thumbnail_type' => array(
                 'default' => 'thumbnail',
                 'description' => __( 'The size of image to pick.', 'super-rss-reader' ),

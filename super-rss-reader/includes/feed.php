@@ -43,6 +43,7 @@ class SRR_Feed{
         $thumbnail_crop_position = $this->options['thumbnail_crop_position'];
         $thumbnail_size = $this->options['thumbnail_size'];
         $thumbnail_default = $this->options['thumbnail_default'];
+        $thumbnail_proxy = intval( $this->options['thumbnail_proxy'] );
         $thumbnail_type = $this->options['thumbnail_type'];
         $no_feed_text = $this->options['no_feed_text'];
 
@@ -206,6 +207,7 @@ class SRR_Feed{
                     $thumb = '';
                     if ( $show_thumb == 1 ){
                         $thumb_url = $this->get_thumbnail_url( $item, $thumbnail_default, $thumbnail_type );
+                        $thumb_url = SRR_Utilities::process_thumbnail_url( $thumb_url, $thumbnail_proxy );
                         $thumb_url = apply_filters( 'srr_mod_thumbnail_url', $thumb_url, $item, $feed, $thumbnail_default, $thumbnail_type );
                         if( !empty( $thumb_url ) ){
                             if( strpos( $thumbnail_size, ',' ) ){

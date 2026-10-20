@@ -71,6 +71,7 @@ class super_rss_reader_widget extends WP_Widget{
         $instance[ 'thumbnail_crop_position' ] = sanitize_text_field( $new_instance['thumbnail_crop_position'] );
         $instance[ 'thumbnail_size' ] = sanitize_text_field( $new_instance['thumbnail_size'] );
         $instance[ 'thumbnail_default' ] = sanitize_text_field( $new_instance['thumbnail_default'] );
+        $instance[ 'thumbnail_proxy' ] = intval( isset( $new_instance['thumbnail_proxy'] ) ? $new_instance['thumbnail_proxy'] : 0 );
         $instance[ 'thumbnail_type' ] = sanitize_text_field( $new_instance['thumbnail_type'] );
         $instance[ 'no_feed_text' ] = wp_kses_post( $new_instance['no_feed_text'] );
 
@@ -114,6 +115,7 @@ class super_rss_reader_widget extends WP_Widget{
         $thumbnail_crop_position = $instance['thumbnail_crop_position'];
         $thumbnail_size = $instance['thumbnail_size'];
         $thumbnail_default = $instance['thumbnail_default'];
+        $thumbnail_proxy = $instance['thumbnail_proxy'];
         $thumbnail_type = $instance['thumbnail_type'];
         $no_feed_text = $instance['no_feed_text'];
         
@@ -302,6 +304,14 @@ class super_rss_reader_widget extends WP_Widget{
             <div class="srr_row">
                 <div class="srr_label"><label for="<?php echo esc_attr( $this->get_field_id('thumbnail_size') ); ?>"><?php esc_html_e( 'Thumbnail size', 'super-rss-reader' ); ?></label><?php $this->tt( __( 'The size of the thumbnail including the units. Example 64px, 10%', 'super-rss-reader' ) ); ?></div>
                 <div class="srr_field"><input id="<?php echo esc_attr( $this->get_field_id('thumbnail_size') ); ?>" name="<?php echo esc_attr( $this->get_field_name('thumbnail_size') ); ?>" type="text" value="<?php echo esc_attr( $thumbnail_size ); ?>" class="widefat" /></div>
+            </div>
+
+            <div class="srr_row">
+                <div class="srr_label"><label for="<?php echo esc_attr( $this->get_field_id('thumbnail_proxy') ); ?>"><?php esc_html_e( 'Proxy thumbnail images', 'super-rss-reader' ); ?></label></div>
+                <div class="srr_field">
+                    <input id="<?php echo esc_attr( $this->get_field_id('thumbnail_proxy') ); ?>" type="checkbox" name="<?php echo esc_attr( $this->get_field_name('thumbnail_proxy') ); ?>" value="1" <?php echo $thumbnail_proxy == "1" ? 'checked="checked"' : ""; ?> />
+                    <small class="srr_small_text"><?php echo __( 'Serve images through proxy server.', 'super-rss-reader' ); ?></small>
+                </div>
             </div>
 
             <div class="srr_row">

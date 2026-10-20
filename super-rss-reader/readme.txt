@@ -7,8 +7,8 @@ License: GPLv2 or later
 Donate Link: https://www.paypal.me/vaakash
 Requires at least: 5.3
 Requires PHP: 5.3
-Tested up to: 7.0.2
-Stable tag: 5.5
+Tested up to: 7.1.3
+Stable tag: 5.6
 
 Display any RSS feed(s) in widget with news ticker effect in multiple tabs, thumbnails, customizable color themes and more.
 
@@ -32,6 +32,7 @@ The widget is fully customizable with external styles and also has color themes 
 * Supports RSS and atom feed.
 * Trim title and description text of the feed item.
 * **Order** feed items by date or random.
+* Option to serve thumbnails through proxy.
 
 ### 🌄 Display RSS feeds like
 
@@ -131,6 +132,10 @@ The additional effect needs only 2.5 KB of additional JavaScript file which is v
 [Live working demo](https://www.aakashweb.com/demos/super-rss-reader/)
 
 ## Changelog
+
+### 5.6
+* New: Option to serve thumbnail images through Serveproxy.
+* Fix: Support for WordPress 7.1.
 
 ### 5.5
 * New: Option to set thumbnail crop position for feed thumbnail images.

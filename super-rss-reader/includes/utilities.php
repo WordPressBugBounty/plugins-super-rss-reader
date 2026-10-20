@@ -77,6 +77,38 @@ class SRR_Utilities{
 
     }
 
+    public static function process_thumbnail_url( $url, $enabled ){
+
+        if( !$enabled || !is_string( $url ) || $url === '' ){
+            return $url;
+        }
+
+        $image_url = parse_url( $url );
+        $site_host = parse_url( get_site_url(), PHP_URL_HOST );
+
+        if(
+            !is_array( $image_url ) ||
+            empty( $image_url['scheme'] ) ||
+            !in_array( strtolower( $image_url['scheme'] ), array( 'http', 'https' ), true ) ||
+            empty( $image_url['host'] ) ||
+            empty( $site_host )
+        ){
+            return $url;
+        }
+
+        $image_host = strtolower( rtrim( $image_url['host'], '.' ) );
+        $site_host = strtolower( rtrim( $site_host, '.' ) );
+        $image_host = preg_replace( '/^www\./', '', $image_host );
+        $site_host = preg_replace( '/^www\./', '', $site_host );
+
+        if( $image_host === $site_host ){
+            return $url;
+        }
+
+        return add_query_arg( 'url', $url, 'https://serveproxy.com/' );
+
+    }
+
     public static function parse_image_url( $item, $content ){
 
         $attributes = array(
